@@ -26,14 +26,22 @@ public class HelloApplication extends Application {
         group.getChildren().addAll(circle);
 
         for (int i = 0; i <11 ; i++) {
-            Button button = new Button(String.valueOf(i));
-            button.setTranslateX((i%3)*60);
-            button.setTranslateY((i%3)*48);
+            Button button = new Button(String.valueOf(i+1));
+            button.setTranslateX(i%3*60);
+            button.setTranslateY(Math.floor(i/3)*48);
             button.setPrefWidth(48);
             button.setPrefHeight(40);
+//            button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent mouseEvent) {
+//                    System.out.println("i");
+//                }
+//            });
+
+            if(i==10)button.setText("0");
 
             clickButton(button);
-            group.getChildren().add(button);
+            if(i!=9) group.getChildren().add(button);
         }
 
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -47,7 +55,7 @@ public class HelloApplication extends Application {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                System.out.println("Hallo");
+                System.out.println("Button: "+button.getText());
             }
         });
     }
